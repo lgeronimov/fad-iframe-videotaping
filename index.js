@@ -24,7 +24,7 @@ const LEGENDS = {
   focusface: 'Enfoca tu rostro dentro de la guía_iframe',
 };
 
-const ACCEPTANCE_LEGEND ='Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica_ts';
+const LEGEND ='Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica_ts';
 
 const CUSTOMIZATION = {
   fadCustomization: {
@@ -41,6 +41,17 @@ const CUSTOMIZATION = {
         labelColorDisabled: '#8e8e8e',
         border: '1px solid #A70635'
       }
+    }
+  },
+  moduleCustomization: {
+    legends: {
+      buttonRecord: 'Iniciar grabación_iframe',
+      buttonFinish: 'Terminar_iframe',
+      initializing: 'iniciando_iframe',
+      processing: 'procesando_iframe',
+      acceptancetInstruction: 'Graba el siguiente texto de forma clara y fuerte_iframe',
+      recording: 'Grabando_iframe',
+      focusface: 'Enfoca tu rostro dentro de la guía_iframe',
     }
   }
 }
@@ -113,8 +124,7 @@ function initIframe() {
     // send configuration
     iframe.contentWindow.postMessage(
       new ResponseEvent(EVENT_MODULE.INIT_MODULE, {
-        acceptanceLegend:ACCEPTANCE_LEGEND,
-        legends: LEGENDS,
+        legend:LEGEND,
         credentials: CREDENTIALS,
         customization: CUSTOMIZATION
       }), iframe.src);
