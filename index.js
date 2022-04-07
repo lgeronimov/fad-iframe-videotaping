@@ -123,7 +123,7 @@ function initIframe() {
   // url - https://apiiduat.firmaautografa.com/fad-iframe-videotaping
   const username = "example@email.com";
   const password = "password";
-  const url = `https://localhost:4200/fad-iframe-videotaping?user=${username}&pwd=${password}`;
+  const url = `https://apiiduat.firmaautografa.com/fad-iframe-videotaping/fad-iframe-videotaping?user=${username}&pwd=${password}`;
   // set src to iframe
   iframe.src = url;
 }
