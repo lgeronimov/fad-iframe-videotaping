@@ -11,20 +11,6 @@ const EVENT_MODULE = {
   MODULE_READY: "MODULE_READY",
 };
 
-// videotaping credentials
-const CREDENTIALS = {};
-
-// legends of module
-const LEGENDS = {
-  buttonRecord: "Iniciar grabación_iframe",
-  buttonFinish: "Terminar_iframe",
-  initializing: "iniciando_iframe",
-  processing: "procesando_iframe",
-  acceptancetInstruction:
-    "Graba el siguiente texto de forma clara y fuerte_iframe",
-  recording: "Grabando_iframe",
-  focusface: "Enfoca tu rostro dentro de la guía_iframe",
-};
 
 const LEGEND =
   "Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica_ts";
@@ -59,6 +45,12 @@ const CUSTOMIZATION = {
     },
   },
 };
+// optional, default ID_MEX_FRONT
+const IDS_ALLOWED = {
+  ID_MEX_FRONT: 'ID_MEX_FRONT',
+  ID_MEX_BACK: 'ID_MEX_BACK',
+  ID_PASSPORT: 'ID_PASSPORT'
+}
 
 // errors
 const ERROR_CODE = {
@@ -80,9 +72,11 @@ class ResponseEvent {
 }
 
 class Result {
-  videoData;
-  constructor(videoData) {
-    this.videoData = videoData;
+  video;
+  startSecond;
+  constructor(data) {
+    this.video = data.video;
+    this.startSecond = data.startSecond;
   }
 }
 
@@ -100,18 +94,22 @@ window.addEventListener("message", (message) => {
     console.error(message.data.data);
   } else if (message.data.event === EVENT_MODULE.PROCESS_COMPLETED) { // PROCESS_COMPLETED
     alert("Process completed");
-    const videoUrl = URL.createObjectURL(message.data.data);
+    const result = new Result(message.data.data);
+    const videoUrl = URL.createObjectURL(result.video);
+    const startSecondResult = result.startSecond;
     // // show result example
 
     const containerResult = document.getElementById("container-result");
     const containerIframe = document.getElementById("container-iframe-videotaping");
     const videoId = document.getElementById("video-id");
+    const startSecond = document.getElementById("startSecond");
     const downloadAncord = document.getElementById("donwload-ancord");
 
     containerIframe.style.display = "none";
     containerResult.style.display = "flex";
     videoId.src = videoUrl;
     downloadAncord.href = videoUrl;
+    startSecond.innerHTML = startSecondResult;
   }
   // } else return;
 });
@@ -132,8 +130,11 @@ function initModule() {
   iframe.contentWindow.postMessage(
     new ResponseEvent(EVENT_MODULE.INIT_MODULE, {
       legend: LEGEND,
-      credentials: CREDENTIALS,
       customization: CUSTOMIZATION,
+      identifications: [{name: IDS_ALLOWED.ID_MEX_FRONT, title: 'Front example'} ],
+      recordEverything: true,
+      probability: 0.8
+
     }),
     iframe.src
   );
