@@ -137,7 +137,6 @@ function initModule() {
       identifications: [{ name: IDS_ALLOWED.ID_MEX_FRONT, title: 'Front example' }],
       recordEverything: true,
       probability: 0.8
-
     }),
     iframe.src
   );
