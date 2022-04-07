@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = function() {
   initIframe();
 };
 
@@ -9,43 +9,52 @@ const EVENT_MODULE = {
   PROCESS_ERROR: "PROCESS_ERROR",
   PROCESS_COMPLETED: "PROCESS_COMPLETED",
   MODULE_READY: "MODULE_READY",
+  CAMERA_ACCEPTED: 'CAMERA_ACCEPTED',
+  MODULE_CLOSED: 'MODULE_CLOSED'
 };
 
 // mandatory, videoagreement legend
-const LEGEND =
-  "Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica_ts";
+const LEGEND = "Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica";
 
-// optional, the app has default legends and colors
-const CUSTOMIZATION = {
-  fadCustomization: {
-    colors: {
-      primary: "#A70635",
-      secondary: "#A70635",
-      tertiary: "#363636",
-    },
-    buttons: {
-      primary: {
-        backgroundColor: "#A70635",
-        backgroundColorDisabled: "#dcdcdc",
-        labelColor: "#ffffff",
-        labelColorDisabled: "#8e8e8e",
-        border: "1px solid #A70635",
+// optional, the app has default configuration, legends and colors
+const CONFIGURATION = {
+  idDetection: {
+    probability: 0.8
+  },
+  recorder: {
+    recordEverything: true
+  },
+  customization: {
+    fadCustomization: {
+      colors: {
+        primary: "#A70635",
+        secondary: "#A70635",
+        tertiary: "#363636",
+      },
+      buttons: {
+        primary: {
+          backgroundColor: "#A70635",
+          backgroundColorDisabled: "#dcdcdc",
+          labelColor: "#ffffff",
+          labelColorDisabled: "#8e8e8e",
+          border: "1px solid #A70635",
+        },
       },
     },
-  },
-  moduleCustomization: {
-    legends: {
-      buttonRecord: "Iniciar grabación_iframe",
-      buttonFinish: "Terminar_iframe",
-      initializing: "iniciando_iframe",
-      processing: "procesando_iframe",
-      acceptancetInstruction:
-        "Graba el siguiente texto de forma clara y fuerte_iframe",
-      recording: "Grabando_iframe",
-      focusface: "Enfoca tu rostro dentro de la guía_iframe",
+    moduleCustomization: {
+      legends: {
+        buttonRecord: "Iniciar grabación_iframe",
+        buttonFinish: "Terminar_iframe",
+        initializing: "iniciando_iframe",
+        processing: "procesando_iframe",
+        acceptancetInstruction: "Graba el siguiente texto de forma clara y fuerte_iframe",
+        recording: "Grabando_iframe",
+        focusface: "Enfoca tu rostro dentro de la guía_iframe",
+      },
     },
-  },
+  }
 };
+
 
 // optional, default ID_MEX_FRONT
 const IDS_ALLOWED = {
@@ -62,6 +71,11 @@ const ERROR_CODE = {
   MEDIA_RECORDER_ERROR: -4,
   FACE_UNDETECTED: -5,
   REQUIRED_LEGEND: -6,
+  VIDEO_EMPTY: -7,
+  NOT_READABLE_CAMERA: -8,
+  TEACHABLE_MACHINE_LOAD_FAIL: -9,
+  TENSORFLOW_LOAD_FAIL: -10,
+  MEDIA_RECORDER_NOT_SUPPORTED: -11,
 };
 
 // models
@@ -89,10 +103,15 @@ window.addEventListener("message", (message) => {
   if (message.origin.includes("firmaautografa.com")) {
     if (message.data.event === EVENT_MODULE.MODULE_READY) { // MODULE_READY
       initModule();
-    }
-    if (message.data.event === EVENT_MODULE.PROCESS_INIT) { // PROCESS_INIT
+    } else if (message.data.event === EVENT_MODULE.PROCESS_INIT) { // PROCESS_INIT
       // only informative
       console.log("Process init");
+    } else if (message.data.event === EVENT_MODULE.CAMERA_ACCEPTED) { // PRROCESS_ERROR
+      // only informative
+      console.log("Camera accepted");
+    } else if (message.data.event === EVENT_MODULE.MODULE_CLOSED) { // PRROCESS_ERROR
+      // module closed, the user clicked (X)
+      console.log("module closed");
     } else if (message.data.event === EVENT_MODULE.PROCESS_ERROR) { // PRROCESS_ERROR
       console.error(message.data.data);
     } else if (message.data.event === EVENT_MODULE.PROCESS_COMPLETED) { // PROCESS_COMPLETED
@@ -114,7 +133,7 @@ window.addEventListener("message", (message) => {
       downloadAncord.href = videoUrl;
       startSecond.innerHTML = startSecondResult;
     }
-  } else return;
+  }
 });
 
 function initIframe() {
@@ -133,10 +152,8 @@ function initModule() {
   iframe.contentWindow.postMessage(
     new ResponseEvent(EVENT_MODULE.INIT_MODULE, {
       legend: LEGEND,
-      customization: CUSTOMIZATION,
       identifications: [{ name: IDS_ALLOWED.ID_MEX_FRONT, title: 'Front example' }],
-      recordEverything: true,
-      probability: 0.8
+      configuration: CONFIGURATION,
     }),
     iframe.src
   );
