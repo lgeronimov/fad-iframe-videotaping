@@ -120,10 +120,10 @@ window.addEventListener("message", (message) => {
 function initIframe() {
   // get iframe
   const iframe = document.getElementById("fad-iframe-videotaping");
-  // url - https://apiiduat.firmaautografa.com/fad-iframe-videotaping
-  const username = "example@email.com";
+  // url - https://devapiframe.firmaautografa.com/fad-iframe-videotaping
+  const username = "exapmle@email.com";
   const password = "password";
-  const url = `https://apiiduat.firmaautografa.com/fad-iframe-videotaping/fad-iframe-videotaping?user=${username}&pwd=${password}`;
+  const url = `https://devapiframe.firmaautografa.com/fad-iframe-videotaping?user=${username}&pwd=${password}`;
   // set src to iframe
   iframe.src = url;
 }
