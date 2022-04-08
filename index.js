@@ -22,7 +22,7 @@ const CONFIGURATION = {
     probability: 0.8
   },
   recorder: {
-    recordEverything: true
+    recordEverything: false
   },
   customization: {
     fadCustomization: {
