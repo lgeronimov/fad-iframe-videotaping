@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
   initIframe();
 };
 
@@ -16,8 +16,19 @@ const EVENT_MODULE = {
 // mandatory, videoagreement legend
 const LEGEND = "Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica";
 
+// optional, default ID_MEX_FRONT
+const IDS_ALLOWED = {
+  ID_MEX_FRONT: 'ID_MEX_FRONT',
+  ID_MEX_BACK: 'ID_MEX_BACK',
+  ID_PASSPORT: 'ID_PASSPORT'
+}
+
 // optional, the app has default configuration, legends and colors
 const CONFIGURATION = {
+  views: {
+    instructions: true,
+    preview: true
+  },
   idDetection: {
     probability: 0.8
   },
@@ -40,6 +51,28 @@ const CONFIGURATION = {
           border: "1px solid #A70635",
         },
       },
+      fonts: {
+        title: {
+          fontSize: '25px',
+          fontFamily: 'system-ui'
+        },
+        subtitle: {
+          fontSize: '17px',
+          fontFamily: 'system-ui'
+        },
+        content: {
+          fontSize: '15px',
+          fontFamily: 'system-ui'
+        },
+        informative: {
+          fontSize: '12px',
+          fontFamily: 'system-ui'
+        },
+        button: {
+          fontSize: '17px',
+          fontFamily: 'system-ui'
+        }
+      }
     },
     moduleCustomization: {
       legends: {
@@ -51,17 +84,23 @@ const CONFIGURATION = {
         recording: "Grabando_iframe",
         focusface: "Enfoca tu rostro dentro de la guía_iframe",
       },
+      legendsInstructions: {
+        title: 'Videoacuerdo',
+        subtitle: 'Confirma tus datos ingresados por medio de una videograbación, leyendo la confirmación de tu información.',
+        buttonNext: 'Continuar',
+        instructions: 'Recuerda no hacer uso de lentes de sol, gorras u otros elementos que dificulten la identificación de tu rostro.'
+      },
+      legendsPreview: {
+        title: 'Videograbación',
+        buttonRetry: 'Volver_a_grabar',
+        buttonNext: 'Confirmar_grabación'
+      }
     },
+  },
+  pathDependencies: {
+    imageDirectory: 'ASSETS_URL'
   }
 };
-
-
-// optional, default ID_MEX_FRONT
-const IDS_ALLOWED = {
-  ID_MEX_FRONT: 'ID_MEX_FRONT',
-  ID_MEX_BACK: 'ID_MEX_BACK',
-  ID_PASSPORT: 'ID_PASSPORT'
-}
 
 // errors
 const ERROR_CODE = {
