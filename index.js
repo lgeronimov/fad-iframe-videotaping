@@ -76,13 +76,22 @@ const CONFIGURATION = {
     },
     moduleCustomization: {
       legends: {
-        buttonRecord: "Iniciar grabación_iframe",
-        buttonFinish: "Terminar_iframe",
-        initializing: "iniciando_iframe",
-        processing: "procesando_iframe",
-        acceptancetInstruction: "Graba el siguiente texto de forma clara y fuerte_iframe",
-        recording: "Grabando_iframe",
-        focusface: "Enfoca tu rostro dentro de la guía_iframe",
+        videoagreement: {
+          buttonRecord: 'Iniciar grabación',
+          buttonFinish: 'Terminar',
+          acceptancetInstruction: 'Graba el siguiente texto de forma clara y fuerte',
+          recording: 'Grabando',
+          focusFace: 'Enfoca tu rostro dentro de la guía',
+        },
+        idDetection: {
+          instruction: 'Acerca y aleja tu identificación',
+          instructionCustomOne: 'Acerca y aleja el',
+          instructionCustomTwo: 'de tu identificación'
+        },
+        loader: {
+          initializing: 'iniciando',
+          processing: 'procesando',
+        }
       },
       legendsInstructions: {
         title: 'Videoacuerdo',
@@ -98,7 +107,7 @@ const CONFIGURATION = {
     },
   },
   pathDependencies: {
-    imageDirectory: 'ASSETS_URL'
+    // imageDirectory: 'ASSETS_URL/'
   }
 };
 
