@@ -20,9 +20,6 @@ const IDS_ALLOWED = {
   ID_PASSPORT: 'ID_PASSPORT'
 }
 
-// optional, identifications to detect, default ID_MEX_FRONT
-const IDENTIFICATIONS = [{ name: IDS_ALLOWED.ID_MEX_FRONT, title: 'FRENTE' }, { name: IDS_ALLOWED.ID_MEX_BACK, title: 'REVERSO' }];
-
 // mandatory, videoagreement legend
 const LEGEND = "Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica";
 
