@@ -35,6 +35,26 @@ const CONFIGURATION = {
   recorder: {
     recordEverything: false
   },
+  iOS: {
+    videoConstraints: {
+      video: {
+        width: { min: 320, ideal: 320, max: 1920 },
+        height: { min: 240, ideal: 240 , max: 1080},
+        facingMode: 'user'
+      },
+      audio: true
+    }
+  },
+  android: {
+    videoConstraints: {
+      video: {
+        width: { min: 320, ideal: 320, max: 1920 },
+        height: { min: 240, ideal: 240 , max: 1080},
+        facingMode: 'user'
+      },
+      audio: true
+    }
+  },
   customization: {
     fadCustomization: {
       colors: {
