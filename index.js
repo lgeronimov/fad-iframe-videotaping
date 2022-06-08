@@ -223,7 +223,8 @@ function initModule() {
   iframe.contentWindow.postMessage(
     new ResponseEvent(EVENT_MODULE.INIT_MODULE, {
       legend: LEGEND,
-      identifications: IDENTIFICATIONS,
+      // optional, identifications to detect, default ID_MEX_FRONT
+      identifications: [{ name: IDS_ALLOWED.ID_MEX_FRONT, title: 'FRENTE' }, { name: IDS_ALLOWED.ID_MEX_BACK, title: 'REVERSO' }],
       configuration: CONFIGURATION,
     }),
     iframe.src
