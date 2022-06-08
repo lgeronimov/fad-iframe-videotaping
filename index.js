@@ -38,8 +38,8 @@ const CONFIGURATION = {
   iOS: {
     videoConstraints: {
       video: {
-        width: { min: 320, ideal: 320, max: 1920 },
-        height: { min: 240, ideal: 240 , max: 1080},
+        width: { min: 640, ideal: 640, max: 1920 },
+        height: { min: 480, ideal: 480 , max: 1080},
         facingMode: 'user'
       },
       audio: true
@@ -48,8 +48,8 @@ const CONFIGURATION = {
   android: {
     videoConstraints: {
       video: {
-        width: { min: 320, ideal: 320, max: 1920 },
-        height: { min: 240, ideal: 240 , max: 1080},
+        width: { min: 640, ideal: 640, max: 1920 },
+        height: { min: 480, ideal: 480 , max: 1080},
         facingMode: 'user'
       },
       audio: true
