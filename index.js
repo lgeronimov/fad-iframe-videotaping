@@ -13,15 +13,18 @@ const EVENT_MODULE = {
   MODULE_CLOSED: 'MODULE_CLOSED'
 };
 
-// mandatory, videoagreement legend
-const LEGEND = "Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica";
-
-// optional, default ID_MEX_FRONT
+// IDS ALLOWED
 const IDS_ALLOWED = {
   ID_MEX_FRONT: 'ID_MEX_FRONT',
   ID_MEX_BACK: 'ID_MEX_BACK',
   ID_PASSPORT: 'ID_PASSPORT'
 }
+
+// optional, identifications to detect, default ID_MEX_FRONT
+const IDENTIFICATIONS = [{ name: IDS_ALLOWED.ID_MEX_FRONT, title: 'FRENTE' }, { name: IDS_ALLOWED.ID_MEX_BACK, title: 'REVERSO' }];
+
+// mandatory, videoagreement legend
+const LEGEND = "Yo Nombre del firmante, con fecha de nacimiento 20 de Junio, con credencial de elector número: 1234134134 declaro que soy Soltero, con ingresos mensuales de $15,667.21, cuento con Casa o depto propio actualmente SI cuento con tarjetas de crédito y reconozco que la información que he proporcionado es verídica";
 
 // optional, the app has default configuration, legends and colors
 const CONFIGURATION = {
@@ -114,8 +117,8 @@ const CONFIGURATION = {
         }
       },
       legendsInstructions: {
-        title: 'Videoacuerdo',
-        subtitle: 'Confirma tus datos ingresados por medio de una videograbación, leyendo la confirmación de tu información.',
+        title: 'Videograbación',
+        subtitle: 'Acerca y aleja tu identificación, posteriormente graba el texto de forma clara y fuerte',
         buttonNext: 'Continuar',
         instructions: 'Recuerda no hacer uso de lentes de sol, gorras u otros elementos que dificulten la identificación de tu rostro.'
       },
@@ -220,7 +223,7 @@ function initModule() {
   iframe.contentWindow.postMessage(
     new ResponseEvent(EVENT_MODULE.INIT_MODULE, {
       legend: LEGEND,
-      identifications: [{ name: IDS_ALLOWED.ID_MEX_FRONT, title: 'Front example' }],
+      identifications: IDENTIFICATIONS,
       configuration: CONFIGURATION,
     }),
     iframe.src
