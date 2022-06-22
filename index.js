@@ -30,7 +30,13 @@ const CONFIGURATION = {
     preview: true
   },
   idDetection: {
+    captureId: false,
     probability: 0.8
+  },
+  selfie: {
+    captureSelfie: true,
+    imageType: 'image/png',
+    imageQuality: 1
   },
   recorder: {
     recordEverything: false
@@ -144,6 +150,7 @@ const ERROR_CODE = {
   TEACHABLE_MACHINE_LOAD_FAIL: -9,
   TENSORFLOW_LOAD_FAIL: -10,
   MEDIA_RECORDER_NOT_SUPPORTED: -11,
+  IDENTIFICATIONS_REQUIRED: -12,
 };
 
 // models
@@ -159,9 +166,11 @@ class ResponseEvent {
 class Result {
   video; // video as Blob
   startSecond; // second in which the videoagreement starts
+  selfie;
   constructor(data) {
     this.video = data.video;
     this.startSecond = data.startSecond;
+    console.log(data);
   }
 }
 
