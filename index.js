@@ -30,7 +30,7 @@ const CONFIGURATION = {
     preview: true
   },
   idDetection: {
-    captureId: false,
+    captureId: true,
     probability: 0.8
   },
   selfie: {
