@@ -216,10 +216,9 @@ window.addEventListener("message", (message) => {
 function initIframe() {
   // get iframe
   const iframe = document.getElementById("fad-iframe-videotaping");
-  // url - https://devapiframe.firmaautografa.com/fad-iframe-videotaping
-  const username = "exapmle@email.com";
-  const password = "password";
-  const url = `https://devapiframe.firmaautografa.com/fad-iframe-videotaping?user=${username}&pwd=${password}`;
+  // url - https://devapiframe.firmaautografa.com/fad-iframe-videotaping;
+  const tkn = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+  const url = `https://devapiframe.firmaautografa.com/fad-iframe-videotaping?tkn=${tkn}`;
   // set src to iframe
   iframe.src = url;
 }
