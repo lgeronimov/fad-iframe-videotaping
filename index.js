@@ -34,9 +34,15 @@ const CONFIGURATION = {
     probability: 0.8
   },
   selfie: {
-    captureSelfie: true,
+    captureSelfie: false,
     imageType: 'image/png',
     imageQuality: 1
+  },
+  selfieId: {
+    captureSelfieId: false,
+    imageType: 'image/png',
+    imageQuality: 1,
+    captureTimeout: 100
   },
   recorder: {
     recordEverything: false
@@ -166,7 +172,8 @@ class ResponseEvent {
 class Result {
   video; // video as Blob
   startSecond; // second in which the videoagreement starts
-  selfie;
+  selfie; // selfie of user
+  selfieId; // array of identifications detected selfies 
   constructor(data) {
     this.video = data.video;
     this.startSecond = data.startSecond;
@@ -217,7 +224,7 @@ function initIframe() {
   // get iframe
   const iframe = document.getElementById("fad-iframe-videotaping");
   // url - https://devapiframe.firmaautografa.com/fad-iframe-videotaping;
-  const tkn = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+  const tkn = "Tmk5WWdEUzI4MTRSYWRML3U5b2ozL1ZwOTRVaGxZL0JGZFpDOUszR1RVNUJFcUkzREZKSTl5SGx0LzdzK0gzbUcxQ2lONE9zTWlsVm5tMGwyckpRUEkzV1ZUZS9WTHhNN201YkF1VG9sOTVVTWVNK2o4ZkhWVkR5YXNscFdqR2U";
   const url = `https://devapiframe.firmaautografa.com/fad-iframe-videotaping?tkn=${tkn}`;
   // set src to iframe
   iframe.src = url;
