@@ -35,9 +35,15 @@ const CONFIGURATION = {
   probability: 0.8,
  },
  selfie: {
-  captureSelfie: true,
+  captureSelfie: false,
   imageType: 'image/png',
   imageQuality: 1,
+ },
+ selfieId: {
+  captureSelfieId: false,
+  imageType: 'image/png',
+  imageQuality: 1,
+  captureTimeout: 100,
  },
  recorder: {
   recordEverything: false,
@@ -186,7 +192,8 @@ class ResponseEvent {
 class Result {
  video; // video as Blob
  startSecond; // second in which the videoagreement starts
- selfie;
+ selfie; // selfie of user
+ selfieId; // array of identifications detected selfies
  constructor(data) {
   this.video = data.video;
   this.startSecond = data.startSecond;
