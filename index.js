@@ -157,7 +157,9 @@ const CONFIGURATION = {
   },
  },
  pathDependencies: {
-  // imageDirectory: 'ASSETS_URL/'
+  imagesInstructions: {
+   instruction: 'Custom image URL',
+  },
  },
 };
 
