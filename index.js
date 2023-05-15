@@ -45,6 +45,9 @@ const CONFIGURATION = {
   imageQuality: 1,
   captureTimeout: 100,
  },
+ timer: {
+  recording: { min: 5, max: 60 },
+ },
  recorder: {
   recordEverything: false,
  },
