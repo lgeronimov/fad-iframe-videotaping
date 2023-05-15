@@ -51,26 +51,6 @@ const CONFIGURATION = {
  recorder: {
   recordEverything: false,
  },
- iOS: {
-  videoConstraints: {
-   video: {
-    width: { min: 640, ideal: 640, max: 1920 },
-    height: { min: 480, ideal: 480, max: 1080 },
-    facingMode: 'user',
-   },
-   audio: true,
-  },
- },
- android: {
-  videoConstraints: {
-   video: {
-    width: { min: 640, ideal: 640, max: 1920 },
-    height: { min: 480, ideal: 480, max: 1080 },
-    facingMode: 'user',
-   },
-   audio: true,
-  },
- },
  customization: {
   fadCustomization: {
    colors: {
