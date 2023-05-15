@@ -47,6 +47,7 @@ const CONFIGURATION = {
  },
  timer: {
   recording: { min: 5, max: 60 },
+	faceUndetected: 5
  },
  recorder: {
   recordEverything: false,
